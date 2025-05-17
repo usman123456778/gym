@@ -1,0 +1,622 @@
+:root {
+    --primary-color: #FFA500; /* Main orange */
+    --dark-bg: #222222; /* Dark gray for header, cards */
+    --dark-bg-cards: #222222;
+    --text-light: #ffffff;
+    --text-muted: #cccccc;
+    --text-dark: #333333;
+    --border-light: #ffffff; /* For button border in dark bg */
+    --card-border-color: #444444;
+    --page-bg: #199638; /* Given page background - Green */
+     /* Footer Specific (can be merged if colors are globally same) */
+    --primary-color-orange-footer: #FF6600;
+    --dark-bg-footer: #222222;
+    --text-light-footer: #ffffff;
+    --text-muted-footer: #cccccc;
+    --text-dark-footer: #333333; /* For text on orange bg */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--page-bg); /* Page background */
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.container {
+    width: 90%;
+    max-width: 1140px;
+    margin: 0 auto;
+    /* padding: 0 20px; /* Replaced by width 90% for fluid edges */
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+.logo-link {
+    text-decoration: none;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- Header --- */
+header {
+    background-color: var(--dark-bg); /* Changed from blue to var(--dark-bg) */
+    color: var(--text-light);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #333; /* Or var(--card-border-color) */
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-light);
+    display: inline-block; /* To contain the child span properly */
+}
+
+.logo-the {
+    border: 1px solid var(--border-light);
+    padding: 2px 6px;
+    margin-right: 5px;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 5px 0; /* Add some padding for better touch targets */
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary-color);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-login {
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 5px 0;
+}
+.nav-login:hover {
+    color: var(--primary-color);
+}
+
+.nav-icon {
+    font-size: 20px;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+.nav-icon:hover {
+    color: var(--primary-color);
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001; /* Above nav-menu */
+}
+.hamburger {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-light);
+    position: relative;
+    transition: background-color 0.3s ease-in-out;
+}
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-light);
+    left: 0;
+    transition: transform 0.3s ease-in-out, top 0.3s ease-in-out;
+}
+.hamburger::before { top: -8px; }
+.hamburger::after { top: 8px; }
+
+.nav-toggle.is-active .hamburger { background-color: transparent; }
+.nav-toggle.is-active .hamburger::before { transform: rotate(45deg); top: 0; }
+.nav-toggle.is-active .hamburger::after { transform: rotate(-45deg); top: 0; }
+
+
+/* --- Pricing Section --- */
+.pricing-section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--text-light); /* Changed to light for dark green bg */
+    margin-top: 0;
+    margin-bottom: 50px;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    align-items: stretch;
+}
+
+.pricing-card {
+    background-color: var(--dark-bg-cards);
+    color: var(--text-light);
+    border: 1px solid var(--card-border-color);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.pricing-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.best-value-card {
+    border-top: 5px solid var(--primary-color);
+}
+.best-value-card:hover {
+    transform: translateY(-10px) scale(1.03);
+}
+
+.best-value-tag {
+    background-color: var(--primary-color);
+    color: var(--text-dark); /* Ensure contrast on orange */
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 15px;
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-1px);
+    border-radius: 0 0 5px 5px;
+    z-index: 10;
+}
+
+
+.card-header {
+    padding: 35px 25px 25px 25px;
+    border-bottom: 1px solid var(--card-border-color);
+    flex-grow: 0;
+}
+.best-value-card .card-header {
+    padding-top: 55px;
+}
+
+
+.plan-name {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text-light);
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.plan-price {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.plan-price .currency {
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-right: 2px;
+    line-height: 1;
+    align-self: flex-start;
+    margin-top: 5px;
+}
+
+.plan-price .amount {
+    font-size: 72px;
+    font-weight: 900;
+    color: var(--primary-color);
+    line-height: 0.8;
+}
+
+.plan-price .frequency {
+    font-size: 14px;
+    color: var(--text-muted);
+    align-self: flex-end;
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+
+.plan-description {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    min-height: 45px;
+}
+
+.plan-validity {
+    font-size: 13px;
+    color: #e74c3c; /* A slightly more visible red/error-like color for validity */
+    margin-bottom: 25px;
+    min-height: 18px;
+}
+.plan-validity:empty {
+    display: none;
+}
+
+.btn-select {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--text-light);
+    border: 2px solid var(--border-light);
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    width: 80%;
+    max-width: 220px;
+}
+
+.btn-select:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--text-dark); /* Text dark for better contrast on orange */
+}
+
+.card-features {
+    padding: 25px;
+    flex-grow: 1;
+    text-align: left;
+}
+
+.card-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card-features ul li {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.card-features ul li::before {
+    content: '✓';
+    color: var(--primary-color);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.card-features ul li:last-child {
+    margin-bottom: 0;
+}
+
+/* --- Animations --- */
+.animate-on-scroll, .site-footer { /* Include site-footer for general animation */
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.is-visible, .site-footer.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.pricing-card.animate-on-scroll:nth-child(2) {
+    transition-delay: 0.1s;
+}
+.pricing-card.animate-on-scroll:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+
+/* --- Footer Styles (Shared with program.css, potentially styles.css) --- */
+.site-footer {
+    /* Animation properties are now in .animate-on-scroll */
+    transform: translateY(20px); /* Initial state for footer animation */
+}
+
+.footer-main {
+    background-color: var(--dark-bg-footer);
+    color: var(--text-muted-footer);
+    padding: 60px 0;
+    font-size: 14px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+}
+
+.footer-column {
+    margin-bottom: 20px; /* Spacing when columns stack implicitly by grid */
+}
+
+.footer-column.logo-column .logo { /* Target logo within logo-column for specific footer styling */
+    color: var(--text-light-footer);
+}
+.footer-column.logo-column .logo-the {
+    border-color: var(--text-light-footer);
+}
+
+
+.footer-column h4 {
+    color: var(--text-light-footer);
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a,
+.footer-column p a {
+    color: var(--text-muted-footer);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover,
+.footer-column p a:hover {
+    color: var(--text-light-footer);
+    text-decoration: underline;
+}
+
+.footer-column p {
+    margin: 0 0 10px 0;
+    line-height: 1.7;
+}
+
+.store-badges-footer {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column; /* Stack badges */
+    gap: 10px; /* Space between badges */
+}
+
+.store-badges-footer .store-badge img {
+    height: 40px;
+    width: auto;
+    /* display: block; Removed, flex handles stacking */
+    transition: transform 0.2s ease-in-out;
+}
+.store-badges-footer .store-badge img:hover {
+    transform: scale(1.05);
+}
+
+
+.social-icons-footer {
+    margin-top: 15px;
+    display: flex; /* Align icons in a row */
+    gap: 15px; /* Space between icons */
+}
+.social-icons-footer a {
+    color: var(--text-muted-footer);
+    text-decoration: none;
+    font-size: 20px; /* Increased for FontAwesome */
+    /* margin-right: 15px; Removed, gap handles spacing */
+    transition: color 0.3s ease;
+}
+.social-icons-footer a:last-child {
+    margin-right: 0;
+}
+.social-icons-footer a:hover {
+    color: var(--text-light-footer); /* Lighter or primary color on hover */
+}
+
+
+/* --- Footer Bottom --- */
+.footer-bottom {
+    background-color: var(--primary-color-orange-footer);
+    color: var(--text-dark-footer);
+    padding: 20px 0;
+    text-align: center;
+    font-size: 13px;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+.footer-bottom a {
+    color: var(--text-dark-footer);
+    font-weight: bold;
+    text-decoration: underline;
+    transition: opacity 0.3s ease;
+}
+.footer-bottom a:hover {
+    opacity: 0.8;
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) { /* Tablets */
+    .pricing-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+    .section-title {
+        font-size: 32px;
+    }
+    .plan-price .amount {
+        font-size: 64px;
+    }
+    .plan-price .currency {
+        font-size: 24px;
+    }
+    .footer-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjust for footer */
+    }
+}
+
+@media (max-width: 768px) { /* Larger Mobiles & Small Tablets */
+    .nav-toggle {
+        display: block;
+    }
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%; /* Position below header height */
+        left: 0;
+        width: 100%;
+        background-color: var(--dark-bg);
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        gap: 0;
+        border-top: 1px solid var(--card-border-color);
+    }
+    .nav-menu.nav-menu-visible {
+        display: flex;
+    }
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+    .nav-links a {
+        display: block;
+        padding: 10px 0;
+        width: 100%;
+    }
+    .nav-actions {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        padding: 0 20px;
+    }
+    .nav-login, .nav-icon {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .section-title {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr; /* Stack footer columns */
+        text-align: center;
+    }
+    .footer-column {
+        align-items: center; /* Center content like logo, badges, social icons */
+    }
+    .footer-column ul {
+        text-align: center;
+    }
+    .store-badges-footer, .social-icons-footer {
+        justify-content: center;
+    }
+     .store-badges-footer .store-badge img {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 480px) { /* Smaller Mobiles */
+    .plan-name {
+        font-size: 20px;
+    }
+    .plan-price .amount {
+        font-size: 56px;
+    }
+    .plan-price .currency {
+        font-size: 22px;
+    }
+    .card-header, .card-features {
+        padding: 20px;
+    }
+    .best-value-card .card-header {
+        padding-top: 45px;
+    }
+    .btn-select {
+        padding: 10px 25px;
+        font-size: 15px;
+        width: 90%; /* More width on small screens */
+    }
+}

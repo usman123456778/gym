@@ -1,0 +1,269 @@
+:root {
+    --primary-color: #007bff; /* Example: Blue */
+    --primary-hover: #0056b3;
+    --secondary-color: #6c757d;
+    --background-start: #1a2a6c; /* Dark blue for gradient */
+    --background-mid: #b21f1f;   /* Red for gradient */
+    --background-end: #fdbb2d;     /* Yellow for gradient */
+    --text-light: #f8f9fa;
+    --text-dark: #343a40;
+    --input-border: #ced4da;
+    --input-focus-border: var(--primary-color);
+    --form-bg: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(-45deg, var(--background-start), var(--background-mid), var(--background-end), var(--background-mid));
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    overflow-x: hidden; /* Prevent horizontal scroll from gradient animation */
+    padding: 15px; /* Add some padding for small screens */
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.login-container {
+    padding: 20px;
+    animation: fadeInSlideUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+    width: 100%;
+    max-width: 430px; /* Slightly increase max-width */
+}
+
+@keyframes fadeInSlideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-form {
+    background-color: var(--form-bg);
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    text-align: center;
+}
+
+.login-form h2 {
+    color: var(--text-dark);
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 28px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px 12px 40px; /* Space for icon */
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    font-size: 16px;
+    color: var(--text-dark);
+    background-color: var(--white); /* Use solid white for input bg */
+    transition: border-color 0.3s ease;
+}
+.input-group input:focus {
+    outline: none;
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Optional focus shadow */
+}
+
+.input-group label {
+    position: absolute;
+    left: 40px; /* Align with input text start, past icon */
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--secondary-color);
+    font-size: 16px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    padding: 0 5px;
+    display: flex; /* To align icon and text within label */
+    align-items: center;
+}
+
+.input-group .icon {
+    position: absolute; /* Position icon inside the input field visually */
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--secondary-color);
+    transition: color 0.3s ease;
+    z-index: 2; /* Ensure icon is clickable if it was a button */
+}
+
+.input-group input:focus ~ .icon, /* Changed selector to target icon directly */
+.input-group input:valid ~ .icon {
+    color: var(--primary-color);
+}
+
+/* Floating label animation */
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label { /* Use :not(:placeholder-shown) for better behavior */
+    top: -10px;
+    left: 10px; /* Adjust left position for floated label */
+    font-size: 13px;
+    color: var(--primary-color);
+    background-color: var(--white); /* Background for floated label to cover border */
+    padding: 0 5px;
+    border-radius: 3px;
+    z-index: 1; /* Ensure label is above input border if it overlaps */
+}
+/* Adjust if label has an icon inside it, this example assumes icon is separate sibling */
+.input-group input:focus + label .label-text, /* if label has <span class="label-text"> */
+.input-group input:not(:placeholder-shown) + label .label-text {
+    /* specific styles for label text if needed */
+}
+
+
+/* Animated border/underline */
+.input-group .focus-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.4s ease;
+    z-index: 2; /* Above default input border */
+}
+.input-group input:focus ~ .focus-border {
+    width: 100%;
+}
+
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 14px;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 10px; /* Add gap for wrapped items */
+}
+
+.remember-me {
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    white-space: nowrap; /* Prevent "Remember Me" from wrapping */
+}
+.remember-me input {
+    margin-right: 8px;
+    accent-color: var(--primary-color); /* Styles the checkbox color */
+}
+
+.forgot-password {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+.forgot-password:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+.btn-login {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 14px 20px;
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-login:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+.btn-login:active {
+    transform: translateY(0px);
+    box-shadow: none;
+}
+
+.signup-link {
+    margin-top: 25px;
+    font-size: 14px;
+    color: var(--secondary-color);
+}
+.signup-link a {
+    color: var(--primary-color);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.signup-link a:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .login-form {
+        padding: 30px 20px;
+    }
+    .login-form h2 {
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+    .input-group input {
+        padding: 12px 15px 12px 40px; /* Maintain padding for icon */
+        font-size: 15px;
+    }
+    .input-group label {
+        font-size: 15px;
+        left: 40px; /* Ensure label aligns correctly */
+    }
+    .input-group input:focus + label,
+    .input-group input:not(:placeholder-shown) + label {
+        font-size: 12px;
+        top: -8px; /* Adjust for smaller font */
+        left: 8px;
+    }
+    .btn-login {
+        padding: 12px 15px;
+        font-size: 16px;
+    }
+    .form-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px; /* Increased gap for column layout */
+    }
+    .remember-me, .forgot-password {
+        width: 100%; /* Make them take full width if needed */
+        text-align: left;
+    }
+}

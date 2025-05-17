@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رابطہ کریں - پاور ہاؤس جم</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- آپ کی مرکزی اسٹائل شیٹ (اگر علیحدہ ہے) -->
+    <!-- <link rel="stylesheet" href="gym-style.css"> -->
+    <style>
+        /* === CSS Variables (Gym Theme) === */
+        :root {
+            --gym-primary-color: #ff4500; /* OrangeRed - Energetic */
+            --gym-primary-dark: #cc3700;
+            --gym-secondary-color: #2c3e50; /* Dark Blue/Grey - Strength */
+            --gym-secondary-light: #34495e;
+            --gym-text-light: #f8f9fa;
+            --gym-text-dark: #333333;
+            --gym-bg-light: #f1f3f5;
+            --gym-bg-dark: #1a1a1a;
+            --gym-accent-light: rgba(255, 69, 0, 0.1); /* Light primary for subtle backgrounds */
+
+            --font-heading-gym: 'Bebas Neue', sans-serif; /* Bold, impactful heading font */
+            --font-body-gym: 'Roboto', sans-serif; /* Clean body font */
+
+            --transition-main: 0.3s ease-in-out;
+            --shadow-lift: 0 10px 25px rgba(0,0,0,0.15);
+            --border-radius-md: 0.5rem;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap');
+
+        body.gym-contact-page {
+            font-family: var(--font-body-gym);
+            background-color: var(--gym-bg-dark); /* Dark theme for gym */
+            color: var(--gym-text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Navbar (Simplified for standalone page example) */
+        .gym-navbar {
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: fixed; /* Sticky navbar */
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .gym-navbar .navbar-brand {
+            font-family: var(--font-heading-gym);
+            font-size: 2rem;
+            color: var(--gym-primary-color) !important;
+            letter-spacing: 1px;
+        }
+        .gym-navbar .nav-link {
+            color: rgba(255,255,255,0.8) !important;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.5rem 1rem !important;
+            transition: color var(--transition-main);
+        }
+        .gym-navbar .nav-link:hover,
+        .gym-navbar .nav-link.active {
+            color: var(--gym-primary-color) !important;
+        }
+
+
+        /* Hero Section */
+        .contact-hero-gym {
+            height: 75vh;
+            min-height: 450px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url('fd6edb_8f088bdebace4df985abb6d644b8ec0e~mv2.avif') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed; /* Parallax */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative; /* For animated lines */
+            padding-top: 80px; /* Account for fixed navbar */
+        }
+        .contact-hero-gym h1 {
+            font-family: var(--font-heading-gym);
+            font-size: clamp(3rem, 10vw, 6rem);
+            color: var(--gym-primary-color);
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(var(--gym-primary-color-rgb, 255,69,0), 0.5); /* Glow effect */
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        /* Animated line under heading */
+        .contact-hero-gym h1::after {
+            content: '';
+            display: block;
+            width: 0; /* Initial width */
+            height: 4px;
+            background: var(--gym-primary-color);
+            margin: 15px auto 0;
+            animation: expandLine 1.5s ease-out 1s forwards;
+        }
+        @keyframes expandLine {
+            to { width: 100px; }
+        }
+
+        .contact-hero-gym p {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Contact Content Area */
+        .contact-content-area-gym {
+            padding: 80px 0;
+            background-color: var(--gym-bg-dark); /* Keep dark theme */
+        }
+
+        .contact-form-card-gym {
+            background-color: rgba(44, 62, 80, 0.7); /* Darker semi-transparent */
+            backdrop-filter: blur(8px);
+            padding: 35px 40px;
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-lift);
+            border: 1px solid rgba(var(--gym-primary-color-rgb, 255,69,0), 0.3);
+        }
+        .contact-form-card-gym h2 {
+            font-family: var(--font-heading-gym);
+            color: var(--gym-primary-color);
+            margin-bottom: 25px;
+            font-size: 2.5rem;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        .form-floating > label {
+            color: rgba(255,255,255,0.6);
+            right: 0; /* RTL */
+            left: auto;
+            padding-right: 1rem;
+        }
+        .form-floating > .form-control {
+            background-color: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--gym-text-light);
+            border-radius: var(--border-radius-sm);
+            padding: 1rem 1rem 1rem 3rem; /* Icon space */
+        }
+        .form-floating > .form-control:focus {
+            background-color: rgba(255,255,255,0.1);
+            border-color: var(--gym-primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(var(--gym-primary-color-rgb, 255,69,0), 0.3);
+        }
+        .form-floating > .form-control:focus ~ label,
+        .form-floating > .form-control:not(:placeholder-shown) ~ label {
+             color: var(--gym-primary-color);
+        }
+         .input-with-icon .form-control-icon {
+            left: 15px; right:auto; color: rgba(255,255,255,0.4);
+        }
+        .form-control:focus + .form-control-icon { color: var(--gym-primary-color); }
+
+
+        .btn-submit-gym {
+            background: var(--gym-primary-color);
+            color: var(--gym-bg-dark);
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            width: 100%;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(var(--gym-primary-color-rgb, 255,69,0), 0.3);
+            transition: all var(--transition-main);
+        }
+        .btn-submit-gym:hover {
+            background-color: var(--gym-primary-dark);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 20px rgba(var(--gym-primary-color-rgb, 255,69,0), 0.4);
+        }
+
+        .contact-details-gym {
+            padding-left: 0; /* Will be handled by col padding */
+        }
+        .contact-details-gym h3 {
+            font-family: var(--font-heading-gym);
+            color: var(--gym-primary-color);
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+        }
+        .contact-detail-item-gym {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            color: var(--gym-text-light);
+            opacity: 0.9;
+        }
+        .contact-detail-item-gym i {
+            font-size: 1.8rem; /* Larger icons */
+            color: var(--gym-primary-color);
+            margin-left: 20px; /* RTL */
+            margin-right: 0;
+            width: 35px;
+            flex-shrink: 0;
+            transition: transform var(--transition-main);
+        }
+        .contact-detail-item-gym:hover i {
+            transform: scale(1.2) rotate(-5deg);
+        }
+        .contact-detail-item-gym p { margin-bottom: 2px; line-height: 1.6; }
+        .contact-detail-item-gym strong { font-weight: 700; display: block; margin-bottom: 3px; }
+        .contact-detail-item-gym a { color: var(--gym-text-light); }
+        .contact-detail-item-gym a:hover { color: var(--gym-primary-color); }
+
+        .gym-social-links { margin-top: 30px; text-align: center;}
+        .gym-social-links a {
+            font-size: 2rem;
+            color: rgba(255,255,255,0.7);
+            margin: 0 12px;
+            transition: color var(--transition-main), transform var(--transition-main);
+        }
+        .gym-social-links a:hover {
+            color: var(--gym-primary-color);
+            transform: translateY(-5px) rotate(10deg);
+        }
+
+        /* Map Section */
+        .map-section-gym { padding: 0; height: 500px; }
+        .map-section-gym iframe { width: 100%; height: 100%; border: 0; filter: grayscale(0.3) contrast(1.1); }
+
+
+        /* Footer */
+        .gym-footer {
+            background-color: var(--gym-secondary-color);
+            color: rgba(255,255,255,0.7);
+            padding: 40px 0 20px;
+            text-align: center;
+            border-top: 3px solid var(--gym-primary-color);
+        }
+        .gym-footer p { margin-bottom: 0.5rem; font-size: 0.9rem;}
+        .gym-footer .footer-logo {
+            font-family: var(--font-heading-gym);
+            font-size: 1.8rem;
+            color: var(--gym-primary-color);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Floating Action Button for "Call Us" */
+        .fab-call {
+            position: fixed;
+            bottom: 30px;
+            right: 30px; /* RTL میں left */
+            background-color: var(--gym-primary-color);
+            color: var(--gym-bg-dark);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: var(--shadow-lift);
+            z-index: 999;
+            transition: all var(--transition-main);
+            animation: pulseEffect 2s infinite;
+        }
+        .fab-call:hover {
+            transform: scale(1.1);
+            background-color: var(--gym-primary-dark);
+        }
+        html[dir="rtl"] .fab-call {
+            right: auto;
+            left: 30px;
+        }
+        @keyframes pulseEffect {
+            0% { box-shadow: 0 0 0 0 rgba(var(--gym-primary-color-rgb, 255,69,0), 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(var(--gym-primary-color-rgb, 255,69,0), 0); }
+            100% { box-shadow: 0 0 0 0 rgba(var(--gym-primary-color-rgb, 255,69,0), 0); }
+        }
+
+
+        /* Responsive */
+        @media (max-width: 991.98px) {
+            .contact-details-gym { margin-top: 50px; }
+            .contact-hero-gym h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); }
+        }
+        @media (max-width: 767.98px) {
+            .gym-navbar .navbar-collapse { background-color: rgba(0,0,0,0.9); padding: 15px; border-radius: var(--border-radius-sm); margin-top: 10px;}
+            .gym-navbar .nav-link { text-align: center; }
+            .contact-hero-gym { height: 60vh; }
+        }
+
+    </style>
+</head>
+<body class="gym-contact-page">
+    <nav class="navbar navbar-expand-lg gym-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">پاور ہاؤس جم</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#gymNav" aria-controls="gymNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars" style="color: var(--gym-primary-color);"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="gymNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="member.html">مرکزی صفحہ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="program.html">ہمارے بارے میں</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">سروسز</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="gym-contact.html">رابطہ کریں</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-sm ms-lg-2" style="background-color:var(--gym-primary-color); color:var(--gym-bg-dark); padding: 8px 15px; border-radius:20px;" href="#">ممبر بنیں</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="contact-hero-gym">
+        <div class="container">
+            <div class="contact-hero-content">
+                <h1 data-aos="zoom-in" data-aos-duration="1000">رابطہ کریں</h1>
+                <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">ہم آپ کی فٹنس کے سفر میں مدد کے لیے یہاں موجود ہیں۔</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="contact-content-area-gym">
+        <div class="container">
+            <div class="row align-items-stretch">
+                <div class="col-lg-7 mb-5 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="contact-form-card-gym h-100">
+                        <h2>اپنا پیغام بھیجیں</h2>
+                        <form id="gymContactForm">
+                            <div class="form-floating mb-3 input-with-icon" data-aos="fade-up" data-aos-delay="100">
+                                <input type="text" class="form-control" id="gymContactName" placeholder="آپ کا نام" required>
+                                <label for="gymContactName">آپ کا نام*</label>
+                                <i class="fas fa-user form-control-icon"></i>
+                            </div>
+                            <div class="form-floating mb-3 input-with-icon" data-aos="fade-up" data-aos-delay="200">
+                                <input type="email" class="form-control" id="gymContactEmail" placeholder="آپ کا ای میل" required>
+                                <label for="gymContactEmail">آپ کا ای میل*</label>
+                                 <i class="fas fa-envelope form-control-icon"></i>
+                            </div>
+                            <div class="form-floating mb-3 input-with-icon" data-aos="fade-up" data-aos-delay="300">
+                                <input type="text" class="form-control" id="gymContactSubject" placeholder="موضوع">
+                                <label for="gymContactSubject">موضوع</label>
+                                <i class="fas fa-tag form-control-icon"></i>
+                            </div>
+                            <div class="form-floating mb-4 input-with-icon" data-aos="fade-up" data-aos-delay="400">
+                                <textarea class="form-control" placeholder="آپ کا پیغام" id="gymContactMessage" style="height: 150px" required></textarea>
+                                <label for="gymContactMessage">آپ کا پیغام*</label>
+                                <i class="fas fa-pencil-alt form-control-icon" style="top: 25px;"></i>
+                            </div>
+                            <button type="submit" class="btn-submit-gym" data-aos="zoom-in" data-aos-delay="500">پیغام بھیجیں <i class="fas fa-paper-plane ms-2"></i></button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-lg-5" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="contact-details-gym h-100">
+                        <h3>ہماری تفصیلات</h3>
+                        <div class="contact-detail-item-gym" data-aos="fade-left" data-aos-delay="300">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>ہمارا پتہ:</strong>
+                                <p>123 فٹنس اسٹریٹ، ورزش نگر، شہر ایکس وائی زیڈ، پاکستان</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail-item-gym" data-aos="fade-left" data-aos-delay="400">
+                            <i class="fas fa-phone-alt"></i>
+                            <div>
+                                <strong>فون نمبر:</strong>
+                                <p><a href="tel:+923001234567">+92 300 1234567</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-detail-item-gym" data-aos="fade-left" data-aos-delay="500">
+                            <i class="fas fa-envelope"></i>
+                             <div>
+                                <strong>ای میل:</strong>
+                                <p><a href="mailto:info@powerhousegym.pk">info@powerhousegym.pk</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-detail-item-gym" data-aos="fade-left" data-aos-delay="600">
+                            <i class="fas fa-clock"></i>
+                             <div>
+                                <strong>جم کے اوقات:</strong>
+                                <p>پیر - ہفتہ: صبح 6:00 بجے سے رات 11:00 بجے تک<br>
+                                   اتوار: صبح 8:00 بجے سے شام 8:00 بجے تک</p>
+                            </div>
+                        </div>
+                        <div class="gym-social-links" data-aos="fade-up" data-aos-delay="700">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="map-section-gym" data-aos="fade-in" data-aos-duration="1200">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3400.070391989975!2d74.3089523155977!3d31.57294198137373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39191b6165651969%3A0x743770277353b058!2sGovernment%20College%20University%20GCU%20Lahore!5e0!3m2!1sen!2s!4v1600000000000!5m2!1sen!2s"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Powerhouse Gym Location"></iframe>
+    </section>
+
+    <a href="tel:+923001234567" class="fab-call" aria-label="Call Us Now">
+        <i class="fas fa-phone-alt"></i>
+    </a>
+
+    <footer class="gym-footer">
+        <div class="container">
+            <a href="#" class="footer-logo">پاور ہاؤس جم</a>
+            <p>اپنی طاقت کو دریافت کریں۔ اپنی صحت کو بہتر بنائیں۔</p>
+            <p class="small mt-3">© <span id="currentYearGymContact"></span> پاور ہاؤس جم۔ تمام حقوق محفوظ ہیں۔</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000, // Animation duration
+            once: true,     // Animation happens only once
+            offset: 50,     // Offset (in px) from the original trigger point
+        });
+
+        // Dynamic Copyright Year
+        const yearSpanGym = document.getElementById('currentYearGymContact');
+        if (yearSpanGym) {
+            yearSpanGym.textContent = new Date().getFullYear();
+        }
+
+        // Gym Contact Form Submission
+        const gymContactForm = document.getElementById('gymContactForm');
+        if (gymContactForm) {
+            gymContactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('gymContactName').value.trim();
+                const email = document.getElementById('gymContactEmail').value.trim();
+                const message = document.getElementById('gymContactMessage').value.trim();
+
+                if (!name || !email || !message) {
+                    alert('براہ کرم تمام ضروری خانے (*) پُر کریں۔');
+                    return;
+                }
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email)) {
+                    alert('براہ کرم درست ای میل ایڈریس درج کریں۔');
+                    return;
+                }
+
+                const submitButton = this.querySelector('.btn-submit-gym');
+                const originalButtonText = submitButton.innerHTML;
+                submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> بھیجا جا رہا ہے...';
+                submitButton.disabled = true;
+
+                // Simulate form submission
+                setTimeout(() => {
+                    console.log('Gym Contact Form Submitted:', { name, email, subject: document.getElementById('gymContactSubject').value.trim(), message });
+                    alert('آپ کا پیغام کامیابی سے بھیج دیا گیا ہے! ہم جلد ہی آپ سے رابطہ کریں گے۔');
+                    gymContactForm.reset();
+                    submitButton.innerHTML = originalButtonText;
+                    submitButton.disabled = false;
+                }, 2000);
+            });
+        }
+
+        // Add RGB values for CSS variables if not already present in a global :root
+        // This is for the rgba() usage.
+        const rootStyle = document.documentElement.style;
+        rootStyle.setProperty('--gym-primary-color-rgb', '255, 69, 0'); // OrangeRed
+    </script>
+</body>
+</html>

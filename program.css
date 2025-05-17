@@ -1,0 +1,552 @@
+:root {
+    --primary-color: #FFA500; /* Orange */
+    --dark-bg: #222222; /* For header */
+    --card-info-bg: #222222; /* For challenge card info section */
+    --button-bg: #3a3a3a; /* For details button */
+    --text-light: #ffffff;
+    --text-muted: #cccccc;
+    --text-dark: #333333;
+    --border-light: #ffffff; /* For button border on dark bg */
+    --page-bg: #ffffff; /* Default page background */
+
+    /* Footer Specific (Copied from member.css for consistency) */
+    --primary-color-orange-footer: #FF6600;
+    --dark-bg-footer: #222222;
+    --text-light-footer: #ffffff;
+    --text-muted-footer: #cccccc;
+    --text-dark-footer: #333333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--page-bg);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1140px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+.logo-link {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- Header (Consistent with member.css) --- */
+header {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #333;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-light);
+    display: inline-block;
+}
+
+.logo-the {
+    border: 1px solid var(--border-light);
+    padding: 2px 6px;
+    margin-right: 5px;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 5px 0;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary-color);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-login {
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 5px 0;
+}
+.nav-login:hover {
+    color: var(--primary-color);
+}
+
+.nav-icon {
+    font-size: 20px;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+.nav-icon:hover {
+    color: var(--primary-color);
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+.hamburger {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-light);
+    position: relative;
+    transition: background-color 0.3s ease-in-out;
+}
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-light);
+    left: 0;
+    transition: transform 0.3s ease-in-out, top 0.3s ease-in-out;
+}
+.hamburger::before { top: -8px; }
+.hamburger::after { top: 8px; }
+
+.nav-toggle.is-active .hamburger { background-color: transparent; }
+.nav-toggle.is-active .hamburger::before { transform: rotate(45deg); top: 0; }
+.nav-toggle.is-active .hamburger::after { transform: rotate(-45deg); top: 0; }
+
+
+/* --- Challenges Hero Section --- */
+.challenges-hero {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    padding: 50px 0;
+    text-align: center;
+}
+
+.challenges-hero h1 {
+    font-size: 42px;
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.challenges-hero p {
+    font-size: 16px;
+    color: var(--text-muted);
+    margin-bottom: 0;
+    max-width: 600px; /* Constrain width of subtitle */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Challenges Grid Section --- */
+.challenges-grid {
+    padding: 50px 0;
+}
+
+.challenge-card {
+    display: flex;
+    margin-bottom: 40px;
+    background-color: var(--page-bg); /* Card background itself */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border-radius: 4px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.challenge-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.challenge-image {
+    flex: 0 0 55%;
+    background-size: cover;
+    background-position: center;
+    min-height: 350px;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.challenge-card:hover .challenge-image {
+    transform: scale(1.05);
+}
+
+.challenge-info {
+    flex: 0 0 45%;
+    background-color: var(--card-info-bg); /* Dark background for info panel */
+    color: var(--text-light);
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.challenge-card.card-image-right {
+    flex-direction: row-reverse;
+}
+/* No need to redefine flex basis for image-right if they are the same */
+
+.challenge-info h3 {
+    font-size: 28px;
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.challenge-meta {
+    display: block;
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+.challenge-meta:last-of-type {
+    margin-bottom: 25px;
+}
+.challenge-info h3 + .challenge-meta:last-of-type { /* If only one meta after h3 */
+    margin-bottom: 25px;
+}
+
+
+.btn-details {
+    background-color: var(--button-bg);
+    color: var(--text-light);
+    border: 1px solid var(--border-light);
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+    display: inline-block;
+    align-self: flex-start;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    border-radius: 3px;
+}
+
+.btn-details:hover {
+    background-color: var(--primary-color); /* Use primary color on hover */
+    color: var(--text-dark); /* Dark text for contrast on orange */
+    border-color: var(--primary-color);
+}
+
+/* --- Animations --- */
+.animate-on-scroll, .site-footer {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.animate-on-scroll.is-visible, .site-footer.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger for challenge cards if needed */
+.challenge-card.animate-on-scroll:nth-child(2) {
+    transition-delay: 0.1s;
+}
+.challenge-card.animate-on-scroll:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+/* --- Footer Styles (Identical to member.css footer) --- */
+.site-footer {
+    transform: translateY(20px);
+}
+
+.footer-main {
+    background-color: var(--dark-bg-footer);
+    color: var(--text-muted-footer);
+    padding: 60px 0;
+    font-size: 14px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+}
+
+.footer-column {
+    margin-bottom: 20px;
+}
+
+.footer-column.logo-column .logo {
+    color: var(--text-light-footer);
+}
+.footer-column.logo-column .logo-the {
+    border-color: var(--text-light-footer);
+}
+
+.footer-column h4 {
+    color: var(--text-light-footer);
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a,
+.footer-column p a {
+    color: var(--text-muted-footer);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover,
+.footer-column p a:hover {
+    color: var(--text-light-footer);
+    text-decoration: underline;
+}
+
+.footer-column p {
+    margin: 0 0 10px 0;
+    line-height: 1.7;
+}
+
+.store-badges-footer {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.store-badges-footer .store-badge img {
+    height: 40px;
+    width: auto;
+    transition: transform 0.2s ease-in-out;
+}
+.store-badges-footer .store-badge img:hover {
+    transform: scale(1.05);
+}
+
+.social-icons-footer {
+    margin-top: 15px;
+    display: flex;
+    gap: 15px;
+}
+.social-icons-footer a {
+    color: var(--text-muted-footer);
+    text-decoration: none;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+.social-icons-footer a:hover {
+    color: var(--text-light-footer);
+}
+
+.footer-bottom {
+    background-color: var(--primary-color-orange-footer);
+    color: var(--text-dark-footer);
+    padding: 20px 0;
+    text-align: center;
+    font-size: 13px;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+.footer-bottom a {
+    color: var(--text-dark-footer);
+    font-weight: bold;
+    text-decoration: underline;
+    transition: opacity 0.3s ease;
+}
+.footer-bottom a:hover {
+    opacity: 0.8;
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) { /* Tablets */
+    .challenge-card,
+    .challenge-card.card-image-right {
+        flex-direction: column !important; /* Important to override inline style if any */
+    }
+    .challenge-image,
+    .challenge-info {
+        flex: 1 1 100%; /* Make them full width when stacked */
+    }
+    .challenge-image {
+        min-height: 280px;
+    }
+    .challenge-info {
+        text-align: center;
+        padding: 30px 25px;
+    }
+    .challenge-info .btn-details {
+        align-self: center; /* Center button when info panel is centered */
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+}
+
+@media (max-width: 768px) { /* Larger Mobiles & Small Tablets */
+    .nav-toggle {
+        display: block;
+    }
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--dark-bg);
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        gap: 0;
+        border-top: 1px solid #333;
+    }
+    .nav-menu.nav-menu-visible {
+        display: flex;
+    }
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+    .nav-links a {
+        display: block;
+        padding: 10px 0;
+        width: 100%;
+    }
+    .nav-actions {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        padding: 0 20px;
+    }
+     .nav-login, .nav-icon {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .challenges-hero h1 {
+        font-size: 34px;
+    }
+    .challenges-hero p {
+        font-size: 15px;
+        padding: 0 10px; /* Add padding for smaller screens */
+    }
+    .challenge-info h3 {
+        font-size: 24px;
+    }
+    .challenge-image {
+        min-height: 220px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .footer-column {
+        align-items: center;
+    }
+    .footer-column ul {
+        text-align: center;
+    }
+    .store-badges-footer, .social-icons-footer {
+        justify-content: center;
+    }
+    .store-badges-footer .store-badge img {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 480px) { /* Smaller Mobiles */
+    .challenges-hero h1 {
+        font-size: 28px;
+    }
+    .challenges-hero p {
+        font-size: 14px;
+    }
+    .challenge-info h3 {
+        font-size: 22px;
+    }
+    .challenge-info {
+        padding: 25px 20px;
+    }
+    .btn-details {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
